@@ -1,13 +1,12 @@
 <template>
   <ion-page>
-    <ion-header>
+    <ion-header translucent>
       <ion-toolbar>
-        <ion-title>POKEDEX</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
       <div class="box">
-        <input type="text" placeholder="Name....." v-model="search">
+        <input type="text" placeholder=" Search" v-model="search">
       </div>
       <div class="content">
         <ion-card v-for="pokemon in filteredPokemon" :key="pokemon.id" class="targets">
@@ -41,7 +40,7 @@ export default defineComponent({
     for (let i = 1; i < 898; i++) {
       const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`)
       this.pokemonList.push(res.data)
-      console.log(this.pokemonList)
+      //console.log(this.pokemonList)
     }
   },
   computed: {
@@ -58,6 +57,7 @@ export default defineComponent({
 * {
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 
 .box {
@@ -75,20 +75,27 @@ input {
   font-size: 20px;
   box-sizing: border-box;
   transition: .5s;
+  text-align: center;
 }
 
 input[type="text"] {
-  background: rgb(245, 245, 245);
-  width: 390px;
+  background: rgb(250, 250, 250);
+  width: 335px;
   height: 40px;
-  border: none;
+  border: 1px solid rgb(184, 184, 184);
   outline: none;
   padding: 0 25px;
   border-radius: 25px;
   margin-inline: 1%;
 
-  font-size: 1rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: .8rem;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}
+
+input:focus {
+  width: 360px;
+  transition: .3s;
 }
 
 .content {
